@@ -70,12 +70,18 @@ public class QueryDataAndInsertToBPartner extends AbstractTestWS {
 				System.out.println("Start row: " + response.getStartRow());
 				System.out.println();
 				
-				//Variable Class 
+				//Variable businer partner Class 
 				Integer CBParterID = 0;
 				String Name  = "";
 				String Value  = "";
 				String TaxID  = "";
 				Integer LogoID  = 0;
+				
+				//variable Customer
+				Float maxdebt = (float) 1000000;
+				Boolean visible = true;
+				Boolean isvip = false;
+				Float discount = (float) 0;
 				
 				for (int i = 0; i < response.getDataSet().getRowsCount(); i++) {
 					
@@ -106,6 +112,11 @@ public class QueryDataAndInsertToBPartner extends AbstractTestWS {
 					}
 					System.out.println();
 					
+					//Find atau Look at database first:
+					//pake metode SQL Query:
+					//Jika ada Lakukan Statement Update:
+					//Jika tidak ada lakukan Insert:
+					
 					//Insert Row Data ke Table BParner
 					//insertIntoBpartner				
 					psInsert.setLong(1, CBParterID);
@@ -117,13 +128,22 @@ public class QueryDataAndInsertToBPartner extends AbstractTestWS {
 					
 					
 					//Insert ke Table Customer nya Unicenta
-					//psInsertCust.setString(1,CBParterID);
-					//2
-					//3
-					//4
-					//5
-					//6
-					//7
+					psInsertCust.setString(1,CBParterID.toString());
+					//2 searchkey
+					psInsertCust.setString(2,CBParterID.toString());
+					//3 Name
+					psInsertCust.setString(3, Name);
+					//4 maxdebt
+					psInsertCust.setFloat(4, maxdebt);
+					//5 visible
+					psInsertCust.setBoolean(5,visible );
+					//6 isvip
+					psInsertCust.setBoolean(6, isvip);
+					//7 discount
+					psInsertCust.setFloat(7, discount);
+					
+					psInsertCust.executeUpdate();
+					
 				}					
 
 			}
@@ -138,6 +158,9 @@ public class QueryDataAndInsertToBPartner extends AbstractTestWS {
 	              if (psInsert != null) {
 	              	psInsert.close();
 	              }
+	              if (psInsertCust != null) {
+		              	psInsert.close();
+		          }
 	              if (conn != null) {
 	                conn.close();
 	              }
@@ -153,5 +176,3 @@ public class QueryDataAndInsertToBPartner extends AbstractTestWS {
 	}
 	
 }
-	
-

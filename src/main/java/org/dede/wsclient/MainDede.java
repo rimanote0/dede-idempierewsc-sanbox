@@ -9,8 +9,8 @@ public class MainDede {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //      try {
-        new QueryDataAndInsertToBPartner();
-
+//        new QueryDataAndInsertToBPartner();
+		new QueryDataAndInsertToProductCategory();
 	}
 		
 }
