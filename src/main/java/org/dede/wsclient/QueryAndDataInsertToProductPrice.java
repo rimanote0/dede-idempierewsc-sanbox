@@ -18,6 +18,13 @@ import org.idempiere.webservice.client.request.QueryDataRequest;
 import org.idempiere.webservice.client.response.WindowTabDataResponse;
 import org.idempiere.wsclienttest.AbstractTestWS;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetTime;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
+
 public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 	
 	@Override
@@ -91,7 +98,8 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 					Number 	ad_org_id = 0;
 					String  isactive = "";
 //					Date    created = System.currentTimeMillis();
-					long    created = System.currentTimeMillis();
+//					long    created = System.currentTimeMillis();
+					LocalDate created = LocalDate.now();
 					Number 	createdby = 0;
 					long    updated = System.currentTimeMillis();
 					Number  updatedby = 0;
@@ -109,59 +117,77 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 							System.out.println("Column: " + field.getColumn() + " = " + field.getStringValue());
 							//Array List Penampung BPartner Class
 							//Atau pakai kondisi per Kolom
-							if (field.getColumn().equals("M_Pricelist_id")) {
-								String sM_Pricelist_id = field.getStringValue();
+							if (field.getColumn().equals("M_PriceList_Version_ID")) {
+								Integer M_Pricelist_id = field.getIntValue();
+								m_pricelist_version_id = M_Pricelist_id;
 								
-							}else if(field.getColumn().equals("M_product_id")) {
-								String sM_product_id = field.getStringValue();
+							}else if(field.getColumn().equals("M_Product_ID")) {
+								Integer M_product_id = field.getIntValue();
+								m_product_id = M_product_id;
 								
-							}else if(field.getColumn().equals("Ad_client_id")) {
-								String sAd_client_id = field.getStringValue();
+							}else if(field.getColumn().equals("AD_Client_ID")) {
+								Integer Ad_client_id = field.getIntValue();
 //								IsSummary = sIsSummary.charAt(0);
+								ad_client_id = Ad_client_id;
 								
-							}else if(field.getColumn().equals("Ad_org_id")) {
-								String sAd_ord_id = field.getStringValue();
+							}else if(field.getColumn().equals("AD_Org_ID")) {
+								Integer Ad_ord_id = field.getIntValue();
+								ad_org_id = Ad_ord_id;
 								
-							}else if(field.getColumn().equals("Isactive")){
+							}else if(field.getColumn().equals("IsActive")){
 								String sIsactive = field.getStringValue();
 //								IsStocked = sIsStocked.charAt(0);
+								isactive = sIsactive;
 								
 							}else if(field.getColumn().equals("Created")){
 								Date Created = field.getDateValue();
-//								IsPurchased = sIsPurchased.charAt(0);		
+//								IsPurchased = sIsPurchased.charAt(0);
+								
 								
 							}else if(field.getColumn().equals("Createdby")){
-								String sCreatedby = field.getStringValue();
+								Integer Createdby = field.getIntValue();
 //								IsSold = sIsSold.charAt(0);
+								createdby = Createdby;
 								
 							}else if(field.getColumn().equals("Updated")){
 								Date Updated = field.getDateValue();
+//								resultdate2 = Updated;
 								
 							}else if(field.getColumn().equals("Updatedby")){
 								Integer Updatedby = field.getIntValue();
 //								M_Product_Category_ID = (float) sM_Product_Category_ID;
 //								double varDouble = Double.parseDouble(sM_Product_Category_ID);
+								updatedby = Updatedby;
 							
-							}else if(field.getColumn().equals("Pricelist")){
+							}else if(field.getColumn().equals("PriceList")){
 //								C_TaxCategory_ID = field.getFloatValue();
-								Integer Pricelist = field.getIntValue();
+//								Integer Pricelist = field.getIntValue();
+								float Pricelist = field.getFloatValue();
+								pricelist = Pricelist;
 								
 								
-							}else if(field.getColumn().equals("Pricestd")){
-								 Integer Pricestd = field.getIntValue();
-//								 IsBOM = sIsBOM.charAt(0);
+							}else if(field.getColumn().equals("PriceStd")){
+//								Integer Pricestd = field.getIntValue();
+								float Pricestd = field.getFloatValue();
+//								IsBOM = sIsBOM.charAt(0);
+								pricestd = Pricestd;
 								 
 								
-							}else if(field.getColumn().equals("Pricelimit")){
-								Integer Pricelimit = field.getIntValue();
+							}else if(field.getColumn().equals("PriceLimit")){
+//								Integer Pricelimit = field.getIntValue();
+								float Pricelimit = field.getFloatValue();
 //								IsInvoicePrintDetails = sIsInvoicePrintDetails.charAt(0);
+								pricelimit = Pricelimit;
 								
 								
-							}else if(field.getColumn().equals("M_Product_Price_Id")){
+							}else if(field.getColumn().equals("M_ProductPrice_ID")){
 								Integer M_Product_Price_Id = field.getIntValue();
 //								IsPickListPrintDetails = sIsPickListPrintDetails.charAt(0); 
+								m_product_price_id = M_Product_Price_Id;
 								
-							}						
+							}else if (field.getColumn().equals("M_ProductPrice_UU")){
+							
+							}
 							
 						}
 						
@@ -182,31 +208,31 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 						
 						//created
 //						long yourmilliseconds = System.currentTimeMillis();
-						SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");    
-						Time resultdate = new Time(created);
-						System.out.println(sdf.format(resultdate));
-						psInsert.setTime   	(6,  (Time) resultdate);
+//						SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");    
+//						Time resultdate = new Time(created);
+//						System.out.println(sdf.format(resultdate));
 						
-						psInsert.setInt 	(7,  (int) createdby);
+						LocalDate localDate = LocalDate.now();
+//						PreparedStatement st = conn.prepareStatement("INSERT INTO mytable (columnfoo) VALUES (?)");
+						psInsert.setObject(6, localDate);
+						
+						psInsert.setInt 	(7,  (int) createdby);			
 						
 						//updated
-						Time resultdate2 = new Time(updated);
-						System.out.println(sdf.format(resultdate2));
-						psInsert.setTime   	(8,  resultdate2);
+						LocalDate resultdate2 = LocalDate.now();
+//						System.out.println(sdf.format(resultdate2));
+						psInsert.setObject   	(8,  resultdate2);
 						
 						psInsert.setInt 	(9,  (int) updatedby);
-						psInsert.setInt 	(10, (int) pricelist);
-						psInsert.setInt 	(11, (int) pricestd);
-						psInsert.setInt 	(12, (int) pricelimit);
+						psInsert.setFloat 	(10, (float) pricelist);
+						psInsert.setFloat 	(11, (float) pricestd);
+						psInsert.setFloat 	(12, (float) pricelimit);
 						psInsert.setInt 	(13, (int) m_product_price_id);
 						
 						psInsert.executeUpdate();
 								
 					}
 		}					
-
-			
-	    				
 			
 		} catch (Exception e) {
 		e.printStackTrace();
