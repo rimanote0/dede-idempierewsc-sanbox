@@ -106,10 +106,10 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 				System.out.println();
 				
 				//Variable m_product Class 
-				Number M_Product_ID = (float)0;
+				Number M_Product_ID = (double)0;
 				String Name = "";
 				String IsSummary = "N";
-				Number C_UOM_ID = (float)0;
+				Number C_UOM_ID = (double)0;
 				String IsStocked = "Y";
 				String IsPurchased = "Y";
 				String IsSold = "Y";
@@ -220,7 +220,8 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 						//Array List Penampung BPartner Class
 						//Atau pakai kondisi per Kolom
 						if (field.getColumn().equals("M_Product_ID")) {
-							M_Product_ID = field.getFloatValue();
+							M_Product_ID = field.getDoubleValue();
+							id = field.getStringValue();
 							
 						}else if(field.getColumn().equals("Name")) {
 							Name = field.getStringValue();
@@ -231,7 +232,8 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 							IsSummary = sIsSummary;
 							
 						}else if(field.getColumn().equals("C_UOM_ID")) {
-							C_UOM_ID = field.getFloatValue();
+//							C_UOM_ID = field.getFloatValue();
+							C_UOM_ID = field.getDoubleValue();
 							
 						}else if(field.getColumn().equals("IsStocked")){
 							String sIsStocked = field.getStringValue();
@@ -340,11 +342,17 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 					
 					//Insert Row Data ke Table Temp_Products
 					//insertIntoBpartner				
-					psInsert.setFloat  (1, (float) M_Product_ID);
+//					
+//					psInsert.setFloat  (1, (float) M_Product_ID);		//ini Harus Double atau bilangan bulat bukan pecahan
+					psInsert.setDouble  (1, (double) M_Product_ID);		//belum di coba
+					
 					psInsert.setString (2,  Value);
 //					psInsert.setObject (3,  IsSummary);
 					psInsert.setString (3, Name);
-					psInsert.setFloat  (4,  (float)C_UOM_ID);
+//					
+//					psInsert.setFloat  (4,  (float)C_UOM_ID);		//Ganti ke bilangan bulat
+					psInsert.setDouble  (4,  (double)C_UOM_ID);
+					
 					psInsert.setString (5,  IsSummary);
 					psInsert.setString (6,  IsStocked);
 					psInsert.setString (7,  IsPurchased);
@@ -376,7 +384,7 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 					
 					//Insert ke Table Customer nya Unicenta
 //					id = String.valueOf(M_Product_ID);
-					id = M_Product_ID.toString();
+//					id = M_Product_ID.toString();					
 					psInsertProducts.setString (1, id.toString());
 //					
 					reference = id;
@@ -441,7 +449,7 @@ public class QueryDataAndInsertToProducts extends AbstractTestWS {
 	              	psInsert.close();
 	              }
 	              if (psInsertProducts != null) {
-		              	psInsert.close();
+		              	psInsertProducts.close();
 		          }
 	              if (conn != null) {
 	                conn.close();

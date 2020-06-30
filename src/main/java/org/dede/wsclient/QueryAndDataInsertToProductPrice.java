@@ -103,9 +103,15 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 					Number 	createdby = 0;
 					long    updated = System.currentTimeMillis();
 					Number  updatedby = 0;
-					Number  pricelist = 0;
-					Number  pricestd = 0;
-					Number  pricelimit = 0;
+					
+//					Number  pricelist = 0;
+//					Number  pricestd = 0;
+//					Number  pricelimit = 0;
+					
+					Float  pricelist = (float)0;
+					Float  pricestd = (float)0;
+					Float  pricelimit = (float)0;
+					
 					Number  m_product_price_id = 0;
 					
 					for (int i = 0; i < response.getDataSet().getRowsCount(); i++) {

@@ -15,6 +15,10 @@ import org.idempiere.webservice.client.request.QueryDataRequest;
 import org.idempiere.webservice.client.response.WindowTabDataResponse;
 import org.idempiere.wsclienttest.AbstractTestWS;
 
+/* Author : Tut Natha 
+ * Team	: Ajus
+ *      : Dede */
+
 public class QueryDataAndInsertToProductCategory extends AbstractTestWS {
 
 	@Override
@@ -30,8 +34,13 @@ public class QueryDataAndInsertToProductCategory extends AbstractTestWS {
 		QueryDataRequest ws = new QueryDataRequest();
 		ws.setWebServiceType(getWebServiceType());
 		ws.setLogin(getLogin());
-		ws.setLimit(3);
-		ws.setOffset(3);
+		
+//		ws.setLimit(3);
+		ws.setLimit(0);
+		
+//		ws.setOffset(3);
+		ws.setOffset(0);
+		
 		DataRow data = new DataRow();
 //		data.addField("Name", "%Store%");
 		data.addField("Name", "%");
@@ -178,7 +187,9 @@ public class QueryDataAndInsertToProductCategory extends AbstractTestWS {
 	    //belum dipakai
 	   
 	    	}
-	}
-		
-		
-
+  	
+  	public void main(String[] args) {
+  		new QueryDataAndInsertToProductCategory();
+  	}
+  	
+}

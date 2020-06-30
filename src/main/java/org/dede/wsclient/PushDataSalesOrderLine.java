@@ -33,6 +33,10 @@ public class PushDataSalesOrderLine extends AbstractTestWS{
 		
 	}
 
+	public PushDataSalesOrderLine() {
+		
+	}
+	
 	@Override
 	public String getWebServiceType() {
 		
@@ -83,7 +87,8 @@ public class PushDataSalesOrderLine extends AbstractTestWS{
 	    		data.addField("IsActive", 'Y');
 	    		data.addField("PriceActual", 21.59);
 	    		data.addField("C_Currency_ID", 102);
-	    		data.addField("C_Order_ID", COrderParent);		//ambil dari c_order parent
+	    		data.addField("C_Order_ID", 1000000);		//ambil dari c_order parent
+	    													//COrderParent
 	    		data.addField("C_UOM_ID", 100);
 	    		data.addField("QtyOrdered", 10);
 	    		
