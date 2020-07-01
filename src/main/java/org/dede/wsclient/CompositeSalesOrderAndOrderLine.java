@@ -120,7 +120,7 @@ public class CompositeSalesOrderAndOrderLine extends AbstractCompositeWS {
 
 		SetDocActionRequest docAction = new SetDocActionRequest();
 		docAction.setDocAction(DocAction.Complete);
-		docAction.setWebServiceType("DocActionSalesOrder01");		
+		docAction.setWebServiceType("DocActionSalesOrder01");
 		docAction.setRecordIDVariable("@C_Order.C_Order_ID");
 
 		compositeOperation.addOperation(createSalesOrder);
@@ -154,4 +154,13 @@ public class CompositeSalesOrderAndOrderLine extends AbstractCompositeWS {
 		
 	}
 
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	
 }

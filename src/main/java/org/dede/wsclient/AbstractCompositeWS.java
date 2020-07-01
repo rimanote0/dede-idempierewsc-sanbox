@@ -39,6 +39,7 @@ public abstract class AbstractCompositeWS {
 	//addby ajus 30 june 2020
 	public String getUrlBase(String svc) {
 		String url="http://192.168.43.251:8080/ADInterface/services/";
+//		String url="http://192.168.43.184:8080/ADInterface/services/";
 		
 		if (svc.equals("compositeInterface")) {
 			url = url + "compositeInterface";
