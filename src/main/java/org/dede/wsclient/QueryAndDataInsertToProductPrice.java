@@ -254,4 +254,9 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 	          	}
 		}
 	}
+		
+	public static void main(String[] args) {
+		new QueryAndDataInsertToProductPrice();
+	}
+	
 }
