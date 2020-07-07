@@ -49,11 +49,19 @@ public class QueryAndDataInsertToProductPrice extends AbstractTestWS {
 			
 			WebServiceConnection client = getClient();
 			
+			//Load properties
+			PropertiesLoader pl = new PropertiesLoader();			
+			
 			//connect to local database
-			String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
-		    String username = "postgres";
-		    String password = "postgres";
-		    
+//			String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
+//		    String username = "postgres";
+//		    String password = "postgres";
+			
+			//Ganti cpirit...
+			String jdbcUrl = pl.getPropValue("db.url");
+			String username = pl.getPropValue("db.user");
+			String password = pl.getPropValue("db.password");
+			
 		    Connection conn = null;
 		    PreparedStatement psInsert = null;
 		    PreparedStatement psInsertProducts = null;

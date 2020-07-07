@@ -62,10 +62,16 @@ public class QueryDataAndInsertToMStrorageOnHand extends AbstractTestWS {
 
 		WebServiceConnection client = getClient();
 		
+		PropertiesLoader pl = new PropertiesLoader();
+		
 		//connect to local database
-		String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
-	    String username = "postgres";
-	    String password = "postgres";
+//		String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
+//	    String username = "postgres";
+//	    String password = "postgres";
+		
+		String jdbcUrl = pl.getPropValue("db.url");
+		String username = pl.getPropValue("db.user");
+		String password = pl.getPropValue("db.password");
 	    
 	    Connection conn = null;
 	    PreparedStatement psInsert = null;
@@ -244,8 +250,8 @@ public class QueryDataAndInsertToMStrorageOnHand extends AbstractTestWS {
 		          	}
 			}
 		}
-
 	
-	
-
+	public static void main(String[] args) {
+		new QueryDataAndInsertToMStrorageOnHand();
+	}
 }

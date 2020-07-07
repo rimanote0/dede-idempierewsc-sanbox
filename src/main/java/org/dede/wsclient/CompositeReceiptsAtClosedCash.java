@@ -40,10 +40,18 @@ public class CompositeReceiptsAtClosedCash extends AbstractCompositeWS {
 	}	
 	
 	public void execFunction(String receiptsID) {	
+		
+		//Load properties
+		PropertiesLoader pl = new PropertiesLoader();
+		
 		//Connect to Database
-			String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
-		    String username = "postgres";
-		    String password = "postgres";
+//			String jdbcUrl = "jdbc:postgresql://localhost:5432/unicenta434";
+//		    String username = "postgres";
+//		    String password = "postgres";
+		
+		String jdbcUrl = pl.getPropValue("db.url");
+		String username = pl.getPropValue("db.user");
+		String password = pl.getPropValue("db.password");
 		    
 		    Connection conn = null;
 		    PreparedStatement psQuery = null;
